@@ -1,6 +1,22 @@
 import { sendResponse } from "../helpers/index.js";
 import { loginService, registerService } from "../services/authServices.js";
-
+import { getUsers } from "../db/user.js";
+const getAllUsers = async (req, res, next) => {
+  try {
+    const result = await getUsers();
+    console.log("testing result =>", result);
+    if (result)
+      sendResponse(res, {
+        code: 200,
+        success: true,
+        data: result,
+        message: "Tasks fetched successfully",
+      });
+  } catch (error) {
+    console.log("register controller error =>", error);
+    next(error);
+  }
+};
 // register
 const register = async (req, res, next) => {
   try {
@@ -24,4 +40,4 @@ const login = async (req, res, next) => {
   }
 };
 
-export { register, login };
+export { register, login, getAllUsers };
