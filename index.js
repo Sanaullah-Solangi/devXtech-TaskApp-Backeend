@@ -10,6 +10,10 @@ app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 const PORT = process.env.PORT;
+app.get("/", (req, res) => {
+  res.send("Welcome to devXtech TaskManagement App");
+  console.log("Welcome to devXtech TaskManagement App");
+});
 app.use("/api", routes);
 
 app.use(errorHandler);
