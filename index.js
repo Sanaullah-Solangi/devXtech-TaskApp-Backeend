@@ -18,7 +18,7 @@ app.use("/api", routes);
 
 app.use(errorHandler);
 
+connectDb();
 app.listen(PORT, () => {
-  connectDb();
   console.log("server is running on ->", PORT);
 });
